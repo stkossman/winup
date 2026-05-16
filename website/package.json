@@ -1,23 +1,26 @@
 {
-  "name": "",
-  "type": "module",
-  "version": "0.0.1",
-  "engines": {
-    "node": ">=22.12.0"
-  },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@fontsource/arimo": "^5.2.8",
-    "@fontsource/geist-mono": "^5.2.7",
-    "@fontsource/ultra": "^5.2.7",
-    "@tailwindcss/vite": "^4.3.0",
-    "astro": "^6.3.3",
-    "lucide-astro": "^0.556.0",
-    "tailwindcss": "^4.3.0"
-  }
+    "name": "",
+    "type": "module",
+    "version": "0.0.1",
+    "engines": {
+        "node": ">=22.12.0"
+    },
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@fontsource/arimo": "^5.2.8",
+        "@fontsource/geist-mono": "^5.2.7",
+        "@fontsource/ultra": "^5.2.7",
+        "@tailwindcss/vite": "^4.3.0",
+        "astro": "^6.3.3",
+        "lucide-astro": "^0.556.0",
+        "tailwindcss": "^4.3.0"
+    },
+    "devDependencies": {
+        "prettier": "3.8.3"
+    }
 }
