@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import { Clock, CircleDashed } from 'lucide-astro';
+
+const inProgress = [
+  {
+    title: "E2E Testing Pipeline",
+    description: "Setting up robust end-to-end tests to simulate various winget states and edge cases across different Windows versions.",
+  },
+];
+
+const planned = [
+  {
+    title: "Package Pinning (Ignore List)",
+    description: "Add commands to pin specific packages, hiding them from all future check and upgrade prompts to protect stable local environments.",
+  },
+  {
+    title: "Environment Backup & Restore",
+    description: "Export current package states to a manifest and restore them on a new machine with a single command.",
+  },
+  {
+    title: "UAC Pre-elevation",
+    description: "Elevate permissions once at the start of a batch upgrade to prevent repeated UAC prompts mid-execution.",
+  }
+];
+---
+
+<Base title="Roadmap - Winup" description="See what I am currently working on and what is planned next for Winup.">
+  <Header />
+  
+  <main class="min-h-screen">
+    <section class="max-w-6xl mx-auto px-6 pt-24 pb-20 border-b border-[var(--color-border)]">
+      
+      <div class="flex flex-col items-center text-center mb-20 animate-fade-in-up">
+        <h1 class="text-4xl lg:text-5xl text-[var(--color-primary)] mb-6">Roadmap</h1>
+        <p class="text-lg text-[var(--color-secondary)] max-w-xl">
+          Keep up with what's being built next. A surgical approach to Windows package management.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
+        
+        <div class="flex flex-col gap-6">
+          <div class="flex items-center justify-between pb-2 border-b border-[var(--color-border)]">
+            <h2 class="font-mono text-sm font-bold text-[var(--color-primary)]">What I'm currently working on</h2>
+            <span class="font-mono text-xs text-[var(--color-muted)]">{inProgress.length}</span>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            {inProgress.map((item) => (
+              <div class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-accent)] transition-colors">
+                <div class="flex justify-between items-start mb-2 gap-4">
+                  <h3 class="text-base text-[var(--color-primary)]">{item.title}</h3>
+                  <div class="flex items-center gap-1.5 text-[var(--color-muted)] shrink-0">
+                    <Clock size={14} />
+                    <span class="font-mono text-xs">In Progress</span>
+                  </div>
+                </div>
+                <p class="text-sm text-[var(--color-secondary)] leading-[var(--leading-relaxed)]">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          <div class="flex items-center justify-between pb-2 border-b border-[var(--color-border)]">
+            <h2 class="font-mono text-sm font-bold text-[var(--color-primary)]">What I'm working on next</h2>
+            <span class="font-mono text-xs text-[var(--color-muted)]">{planned.length}</span>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            {planned.map((item) => (
+              <div class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-accent)] transition-colors">
+                <div class="flex justify-between items-start mb-2 gap-4">
+                  <h3 class="text-base text-[var(--color-primary)]">{item.title}</h3>
+                  <div class="flex items-center gap-1.5 text-[var(--color-muted)] shrink-0">
+                    <CircleDashed size={14} />
+                    <span class="font-mono text-xs">Planned</span>
+                  </div>
+                </div>
+                <p class="text-sm text-[var(--color-secondary)] leading-[var(--leading-relaxed)]">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
