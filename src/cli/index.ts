@@ -1,7 +1,20 @@
 import { Command } from 'commander'
+import pc from 'picocolors'
 import { checkAction } from './commands/check.js'
 import { listAction } from './commands/list.js'
 import { upgradeAction } from './commands/upgrade.js'
+
+process.on('uncaughtException', error => {
+	console.error(pc.red(`[ ERR ] Critical error: ${error.message}`))
+	process.exit(1)
+})
+
+process.on('unhandledRejection', (reason: any) => {
+	console.error(
+		pc.red(`[ ERR ] Unhandled promise rejection: ${reason.message || reason}`),
+	)
+	process.exit(1)
+})
 
 const program = new Command()
 
@@ -44,11 +57,10 @@ program
 			await upgradeAction(options)
 		} catch (error: any) {
 			if (error.name === 'ExitPromptError') {
-				console.log('\n[ INFO ] Upgrade cancelled by user.')
+				console.log(pc.cyan('\n[ INFO ] Upgrade cancelled by user.'))
 				process.exit(0)
 			}
-			console.error(error)
-			process.exit(1)
+			throw error
 		}
 	})
 

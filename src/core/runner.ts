@@ -3,6 +3,7 @@ import { execSync } from 'node:child_process'
 interface ExecError {
 	stdout?: string
 	message: string
+	code?: string
 }
 
 export function getUpgradeList(includeUnknown: boolean): string {
@@ -15,6 +16,14 @@ export function getUpgradeList(includeUnknown: boolean): string {
 		return execSync(command, { encoding: 'utf-8', stdio: 'pipe' })
 	} catch (error) {
 		const err = error as ExecError
+		if (
+			err.code === 'ENOENT' ||
+			(err.message && err.message.includes('ENOENT'))
+		) {
+			throw new Error(
+				'winget is not recognized. Ensure you are on Windows 10/11 and App Installer is installed.',
+			)
+		}
 		if (err.stdout) {
 			return err.stdout
 		}
