@@ -6,14 +6,14 @@ export function normalizePackages(
 	const packageMap = new Map<string, PackageEntry>()
 
 	for (const raw of rawPackages) {
-		const id = raw['id']
-		const availableVersion = raw['available']
+		const id = raw.id
+		const availableVersion = raw.available
 
 		if (!id || !availableVersion) continue
 
-		const installedVersion = raw['version'] || ''
-		const source = raw['source'] || ''
-		const name = raw['name'] || id
+		const installedVersion = raw.version || ''
+		const source = raw.source || 'winget'
+		const name = raw.name || id
 
 		const isUnknownVersion =
 			installedVersion.toLowerCase().includes('unknown') ||

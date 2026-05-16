@@ -7,7 +7,9 @@ import { getUpgradeList } from './runner.js'
 export function fetchUpgrades(includeUnknown: boolean): PackageEntry[] {
 	try {
 		const rawText = getUpgradeList(includeUnknown)
+
 		const rawObjects = parseWingetOutput(rawText)
+
 		return normalizePackages(rawObjects)
 	} catch (error: any) {
 		Logger.error(`Failed to fetch updates: ${error.message}`)

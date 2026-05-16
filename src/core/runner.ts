@@ -8,7 +8,7 @@ interface ExecError {
 
 export function getUpgradeList(includeUnknown: boolean): string {
 	let command =
-		'winget upgrade --accept-source-agreements --accept-package-agreements'
+		'winget upgrade'
 	if (includeUnknown) {
 		command += ' --include-unknown'
 	}
