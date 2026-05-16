@@ -1,0 +1,37 @@
+name: Bug Report
+description: Report a CLI crash, parsing failure, or logic flaw.
+title: '[Bug] <title>'
+labels: ['type: bug']
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is. Please include the raw winget output if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How can this bug be consistently triggered?
+      value: |
+        1. Run 'winup ...'
+        2. Select '...'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should have happened instead?
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Your Node.js version, Windows version, and Winget version (optional but helpful).
+    validations:
+      required: false

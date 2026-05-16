@@ -1,0 +1,22 @@
+name: Chore / Refactor
+description: Maintenance tasks, CI/CD updates, or code restructuring.
+title: '[Chore] <title>'
+labels: ['type: chore']
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of the task
+      description: What maintenance work needs to be done and why?
+    validations:
+      required: true
+  - type: textarea
+    id: action-items
+    attributes:
+      label: Action Items
+      description: List the steps required to complete this chore.
+      value: |
+        - [ ] 
+        - [ ]
+    validations:
+      required: true

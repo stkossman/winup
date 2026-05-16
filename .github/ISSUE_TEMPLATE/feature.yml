@@ -1,0 +1,33 @@
+name: Feature Request
+description: Propose a new feature, CLI command, or architectural change.
+title: '[Feature] <title>'
+labels: ['type: feature']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ensure this feature aligns with the project's minimalist philosophy before submitting. We prioritize stability and simplicity.
+  - type: textarea
+    id: context
+    attributes:
+      label: Context & Rationale
+      description: Why is this feature necessary? What problem does it solve?
+    validations:
+      required: true
+  - type: textarea
+    id: objectives
+    attributes:
+      label: Objectives / Acceptance Criteria
+      description: Use a checklist format for the required steps.
+      value: |
+        - [ ] Task 1
+        - [ ] Task 2
+    validations:
+      required: true
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Expected Outcome
+      description: What should the final result or terminal output look/feel like?
+    validations:
+      required: true
