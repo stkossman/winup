@@ -1,5 +1,5 @@
 {
-	"name": "winup",
+	"name": "winup-cli",
 	"version": "1.0.0",
 	"description": "Minimalistic winget upgrade manager",
 	"main": "dist/cli/index.js",
@@ -7,11 +7,30 @@
 	"bin": {
 		"winup": "./bin/cli.js"
 	},
+	"files": [
+		"dist",
+		"bin"
+	],
 	"scripts": {
 		"build": "tsc",
 		"start": "node ./bin/cli.js",
 		"test": "vitest run",
-		"dev": "vitest"
+		"dev": "vitest",
+		"compile:exe": "bun build ./src/cli/index.ts --compile --minify --target=bun-windows-x64 --outfile=winup.exe"
+	},
+	"keywords": [
+		"winget",
+		"windows",
+		"cli",
+		"upgrade",
+		"updater",
+		"package-manager"
+	],
+	"author": "stkossman (https://github.com/stkossman)",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/stkossman/winup.git"
 	},
 	"dependencies": {
 		"@inquirer/checkbox": "^5.1.5",
