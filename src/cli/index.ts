@@ -4,20 +4,25 @@ import { checkAction } from './commands/check.js'
 import { listAction } from './commands/list.js'
 import { upgradeAction } from './commands/upgrade.js'
 
-process.on('uncaughtException', error => {
+interface UpgradeOptions {
+	allSafe?: boolean
+	id?: string[]
+	includeUnknown?: boolean
+	dryRun?: boolean
+}
+
+process.on('uncaughtException', (error: Error) => {
 	console.error(pc.red(`[ ERR ] Critical error: ${error.message}`))
 	process.exit(1)
 })
 
-process.on('unhandledRejection', (reason: any) => {
-	console.error(
-		pc.red(`[ ERR ] Unhandled promise rejection: ${reason.message || reason}`),
-	)
+process.on('unhandledRejection', (reason: unknown) => {
+	const message = reason instanceof Error ? reason.message : String(reason)
+	console.error(pc.red(`[ ERR ] Unhandled promise rejection: ${message}`))
 	process.exit(1)
 })
 
 const program = new Command()
-
 program
 	.name('winup')
 	.description('Minimal CLI tool for managing winget upgrades')
@@ -52,11 +57,11 @@ program
 		'Include unknown versions in the interactive list',
 	)
 	.option('--dry-run', 'Simulate the upgrade process without making changes')
-	.action(async options => {
+	.action(async (options: UpgradeOptions) => {
 		try {
 			await upgradeAction(options)
-		} catch (error: any) {
-			if (error.name === 'ExitPromptError') {
+		} catch (error) {
+			if (error instanceof Error && error.name === 'ExitPromptError') {
 				console.log(pc.cyan('\n[ INFO ] Upgrade cancelled by user.'))
 				process.exit(0)
 			}
