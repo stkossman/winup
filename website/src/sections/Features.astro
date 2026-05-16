@@ -1,0 +1,65 @@
+---
+import { ShieldCheck, ListChecks, Zap, RefreshCw, Braces, Package } from 'lucide-astro';
+
+const features = [
+  {
+    icon: ShieldCheck,
+    title: 'Safe by default',
+    description:
+      'Winget shows all updates including ones marked as unknown — often unstable or test releases. Winup hides them automatically, protecting you from potentially broken upgrades.',
+  },
+  {
+    icon: ListChecks,
+    title: 'Interactive selection',
+    description:
+      'No need to know package IDs upfront. Winup opens a checkbox prompt with all available updates — pick what you want with arrows and space, confirm, done.',
+  },
+  {
+    icon: Zap,
+    title: 'Zero noise',
+    description:
+      'Winget dumps walls of technical output. Winup parses everything and surfaces only what matters: a clean table via list, or a single count via check.',
+  },
+  {
+    icon: RefreshCw,
+    title: 'Idempotent',
+    description:
+      'Built to run multiple times without issue. Gracefully handles UAC prompts, winget errors, and network failures — never leaves your system in a broken state.',
+  },
+  {
+    icon: Braces,
+    title: 'Smart upgrade modes',
+    description:
+      'Skip the prompt entirely with --all-safe, target specific packages with -i, or simulate the whole process with --dry-run before committing to any changes.',
+  },
+  {
+    icon: Package,
+    title: 'Portable',
+    description:
+      'Ships as a single standalone .exe — drop it anywhere in your PATH and run. Also available as an NPM package for developers who already have Node.js or Bun.',
+  },
+];
+---
+
+<section class="max-w-6xl mx-auto px-6 py-20 border-b border-[var(--color-border)]">
+
+  <p class="font-mono text-xs text-[var(--color-muted)] tracking-[var(--tracking-widest)] uppercase mb-4">
+    Why winup
+  </p>
+  <h2 class="text-4xl lg:text-5xl text-[var(--color-primary)] mb-14 max-w-xl">
+    Everything winget lacks.
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--color-border)]">
+    {features.map(({ icon: Icon, title, description }) => (
+      <div class="bg-[var(--color-base)] p-8 flex flex-col gap-4">
+        <Icon size={20} class="text-[var(--color-accent)] shrink-0" />
+        <h3 class="text-xl text-[var(--color-primary)]">{title}</h3>
+        <p class="text-sm text-[var(--color-secondary)] leading-[var(--leading-relaxed)]">
+          {description}
+        </p>
+      </div>
+    ))}
+  </div>
+
+</section>
