@@ -1,0 +1,124 @@
+---
+const commands = [
+	{
+		cmd: "winup check",
+		description:
+			"Quickly see how many updates are available. Reports safe and unknown counts separately.",
+		output: [
+			{ text: "[ INFO ] Checking for available updates...", muted: true },
+			{ text: "[ OK ]   Found 32 upgrades (Safe: 31, Unknown: 1).", ok: true },
+			{
+				text: "[ INFO ] Use 'winup list' or 'winup list --include-unknown' to view them.",
+				muted: true,
+			},
+		],
+	},
+	{
+		cmd: "winup list",
+		description:
+			"Display a clean table of all safe updates. Add --include-unknown to show everything.",
+		output: [
+			{ text: "[ INFO ] Fetching available upgrades...", muted: true },
+			{ text: "[ INFO ] Available safe upgrades:", muted: true },
+			{ text: "Obsidian.Obsidian          1.7.7    →  1.12.7", ok: true },
+			{ text: "Python.Python.3.13         3.13.7   →  3.13.13", ok: true },
+			{ text: "ZedIndustries.Zed          1.0.1    →  1.2.6", ok: true },
+			{ text: "AutoHotkey.AutoHotkey      2.0.19   →  2.0.26", ok: true },
+		],
+	},
+	{
+		cmd: "winup upgrade",
+		description:
+			"Launch the interactive checkbox prompt. Pick packages with arrows and space, confirm with Enter.",
+		output: [
+			{ text: "[ INFO ] Fetching available upgrades...", muted: true },
+			{ text: "? Select packages to upgrade:", plain: true },
+			{ text: "◉  Obsidian.Obsidian", ok: true },
+			{ text: "◉  Python.Python.3.13", ok: true },
+			{ text: "○  ZedIndustries.Zed", muted: true },
+		],
+	},
+	{
+		cmd: "winup upgrade --all-safe",
+		description:
+			"Skip the prompt entirely — upgrade all packages with known versions automatically.",
+		output: [
+			{ text: "[ INFO ] Upgrading all safe packages...", muted: true },
+			{ text: "[ OK ]   Obsidian.Obsidian upgraded successfully.", ok: true },
+			{ text: "[ OK ]   Python.Python.3.13 upgraded successfully.", ok: true },
+			{
+				text: "[ OK ]   AutoHotkey.AutoHotkey upgraded successfully.",
+				ok: true,
+			},
+		],
+	},
+	{
+		cmd: "winup upgrade --dry-run",
+		description:
+			"Simulate the entire upgrade process without making any real changes to your system.",
+		output: [
+			{ text: "[ INFO ] Dry run mode — no changes will be made.", muted: true },
+			{ text: "[ OK ]   Would upgrade: Obsidian.Obsidian", ok: true },
+			{ text: "[ OK ]   Would upgrade: Python.Python.3.13", ok: true },
+			{ text: "[ INFO ] Done. 0 packages changed.", muted: true },
+		],
+	},
+	{
+		cmd: "winup upgrade -i Obsidian.Obsidian",
+		description:
+			"Upgrade specific packages by ID — like winget, but with safety checks built in.",
+		output: [
+			{ text: "[ INFO ] Upgrading 1 package...", muted: true },
+			{ text: "[ OK ]   Obsidian.Obsidian upgraded successfully.", ok: true },
+		],
+	},
+];
+---
+
+<section id="usage" class="max-w-6xl mx-auto px-6 py-20 border-b border-[var(--color-border)]">
+
+  <p class="font-mono text-xs text-[var(--color-muted)] tracking-[var(--tracking-widest)] uppercase mb-4">
+    Usage
+  </p>
+  <h2 class="text-4xl lg:text-5xl text-[var(--color-primary)] mb-14 max-w-xl">
+    Every command,<br />explained.
+  </h2>
+
+  <div class="flex flex-col gap-0 divide-y divide-[var(--color-border)]">
+    {commands.map(({ cmd, description, output }) => (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 py-10">
+
+        <div class="flex flex-col gap-3">
+          <p class="font-mono text-[var(--color-accent)]">$ {cmd}</p>
+          <p class="text-sm text-[var(--color-secondary)] leading-[var(--leading-relaxed)] pl-4 border-l border-[var(--color-border)]">
+            {description}
+          </p>
+        </div>
+
+        <div class="font-mono text-xs bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--color-border)] bg-[var(--color-surface-2)]">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-400"></span>
+            <span class="ml-2 text-[var(--color-muted)] text-xs">{cmd}</span>
+          </div>
+          <div class="px-4 py-3 space-y-1">
+            <p><span class="text-[var(--color-muted)]">~</span> <span class="text-[var(--color-accent)]">{cmd}</span></p>
+            {output.map(line => (
+              <p class:list={[
+                'pl-2',
+                line.ok   && 'text-green-600',
+                line.muted && 'text-[var(--color-muted)]',
+                line.plain && 'text-[var(--color-secondary)]',
+              ]}>
+                {line.text}
+              </p>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    ))}
+  </div>
+
+</section>
