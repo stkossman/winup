@@ -2,17 +2,18 @@
 import { Github, Package } from "lucide-astro";
 
 const navLinks = [
-	{ label: "Usage", href: "#usage" },
-	{ label: "Install", href: "#install" },
+	{ label: "Usage", href: "/#usage" },
+	{ label: "Install", href: "/#install" },
+	{ label: "Roadmap", href: "/roadmap" },
 ];
 ---
 
 <header class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-base)]/90 backdrop-blur-sm">
   <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
 
-    <span class="font-mono font-bold text-[var(--color-accent)] text-lg tracking-tight">
+    <a href="/" class="font-mono font-bold text-[var(--color-accent)] text-lg tracking-tight hover:opacity-80 transition-opacity">
       winup
-    </span>
+    </a>
 
     <nav class="flex items-center gap-6">
       <span class="font-mono text-xs text-[var(--color-muted)]">v1.0.1</span>
