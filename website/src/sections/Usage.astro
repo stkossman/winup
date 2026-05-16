@@ -3,14 +3,10 @@ const commands = [
 	{
 		cmd: "winup check",
 		description:
-			"Quickly see how many updates are available. Reports safe and unknown counts separately.",
+			"Quickly see how many updates are available without parsing the full list.",
 		output: [
-			{ text: "[ INFO ] Checking for available updates...", muted: true },
-			{ text: "[ OK ]   Found 32 upgrades (Safe: 31, Unknown: 1).", ok: true },
-			{
-				text: "[ INFO ] Use 'winup list' or 'winup list --include-unknown' to view them.",
-				muted: true,
-			},
+			{ text: "[ INFO ] Checking for available updates...", type: "info" },
+			{ text: "[ OK ] 32 upgrades available.", type: "ok" },
 		],
 	},
 	{
@@ -18,37 +14,78 @@ const commands = [
 		description:
 			"Display a clean table of all safe updates. Add --include-unknown to show everything.",
 		output: [
-			{ text: "[ INFO ] Fetching available upgrades...", muted: true },
-			{ text: "[ INFO ] Available safe upgrades:", muted: true },
-			{ text: "Obsidian.Obsidian          1.7.7    →  1.12.7", ok: true },
-			{ text: "Python.Python.3.13         3.13.7   →  3.13.13", ok: true },
-			{ text: "ZedIndustries.Zed          1.0.1    →  1.2.6", ok: true },
-			{ text: "AutoHotkey.AutoHotkey      2.0.19   →  2.0.26", ok: true },
+			{ text: "[ INFO ] Fetching available upgrades...", type: "info" },
+			{
+				text: "--------------------------------------------------------------------------------",
+				type: "muted",
+			},
+			{
+				text: "Name                  Id                          Version        Available",
+				type: "plain",
+			},
+			{
+				text: "--------------------------------------------------------------------------------",
+				type: "muted",
+			},
+			{
+				text: "Obsidian              Obsidian.Obsidian           1.7.7          1.12.7   ",
+				type: "ok",
+			},
+			{
+				text: "Python 3.13           Python.Python.3.13          3.13.7         3.13.13  ",
+				type: "ok",
+			},
+			{
+				text: "Zed                   ZedIndustries.Zed           1.0.1          1.2.6    ",
+				type: "ok",
+			},
+			{
+				text: "AutoHotkey            AutoHotkey.AutoHotkey       2.0.19         2.0.26   ",
+				type: "ok",
+			},
 		],
 	},
 	{
 		cmd: "winup upgrade",
 		description:
-			"Launch the interactive checkbox prompt. Pick packages with arrows and space, confirm with Enter.",
+			"Launch the interactive checkbox prompt. Safe packages are selected by default.",
 		output: [
-			{ text: "[ INFO ] Fetching available upgrades...", muted: true },
-			{ text: "? Select packages to upgrade:", plain: true },
-			{ text: "◉  Obsidian.Obsidian", ok: true },
-			{ text: "◉  Python.Python.3.13", ok: true },
-			{ text: "○  ZedIndustries.Zed", muted: true },
+			{ text: "[ INFO ] Fetching available upgrades...", type: "info" },
+			{
+				text: "? Select packages to upgrade (Space to select, Enter to confirm):",
+				type: "plain",
+			},
+			{
+				text: "❯ ◉ Obsidian (Obsidian.Obsidian) [1.7.7 -> 1.12.7]",
+				type: "info",
+			},
+			{
+				text: "  ◉ Python (Python.Python.3.13) [3.13.7 -> 3.13.13]",
+				type: "info",
+			},
+			{
+				text: "  ◯ Telegram (Telegram.Telegram) [unknown -> unknown] (UNKNOWN)",
+				type: "warn",
+			},
 		],
 	},
 	{
 		cmd: "winup upgrade --all-safe",
 		description:
-			"Skip the prompt entirely — upgrade all packages with known versions automatically.",
+			"Skip the prompt entirely. Automatically upgrades all packages with known versions.",
 		output: [
-			{ text: "[ INFO ] Upgrading all safe packages...", muted: true },
-			{ text: "[ OK ]   Obsidian.Obsidian upgraded successfully.", ok: true },
-			{ text: "[ OK ]   Python.Python.3.13 upgraded successfully.", ok: true },
+			{ text: "[ INFO ] Fetching available upgrades...", type: "info" },
+			{ text: "[ INFO ] Starting upgrade for 3 package(s)...", type: "info" },
+			{ text: "", type: "plain" },
 			{
-				text: "[ OK ]   AutoHotkey.AutoHotkey upgraded successfully.",
-				ok: true,
+				text: "[ INFO ] Upgrading Obsidian (Obsidian.Obsidian)...",
+				type: "info",
+			},
+			{ text: "[ OK ] Obsidian.Obsidian successfully upgraded.", type: "ok" },
+			{ text: "", type: "plain" },
+			{
+				text: "[ OK ] All selected packages upgraded successfully.",
+				type: "ok",
 			},
 		],
 	},
@@ -57,19 +94,37 @@ const commands = [
 		description:
 			"Simulate the entire upgrade process without making any real changes to your system.",
 		output: [
-			{ text: "[ INFO ] Dry run mode — no changes will be made.", muted: true },
-			{ text: "[ OK ]   Would upgrade: Obsidian.Obsidian", ok: true },
-			{ text: "[ OK ]   Would upgrade: Python.Python.3.13", ok: true },
-			{ text: "[ INFO ] Done. 0 packages changed.", muted: true },
+			{ text: "[ INFO ] Fetching available upgrades...", type: "info" },
+			{ text: "[ INFO ] Starting upgrade for 1 package(s)...", type: "info" },
+			{ text: "", type: "plain" },
+			{
+				text: "[ INFO ] Upgrading Obsidian (Obsidian.Obsidian)...",
+				type: "info",
+			},
+			{
+				text: "[ OK ] Obsidian.Obsidian successfully upgraded (DRY RUN).",
+				type: "ok",
+			},
 		],
 	},
 	{
 		cmd: "winup upgrade -i Obsidian.Obsidian",
 		description:
-			"Upgrade specific packages by ID — like winget, but with safety checks built in.",
+			"Upgrade specific packages by ID - like winget, but with safety checks built in.",
 		output: [
-			{ text: "[ INFO ] Upgrading 1 package...", muted: true },
-			{ text: "[ OK ]   Obsidian.Obsidian upgraded successfully.", ok: true },
+			{ text: "[ INFO ] Fetching available upgrades...", type: "info" },
+			{ text: "[ INFO ] Starting upgrade for 1 package(s)...", type: "info" },
+			{ text: "", type: "plain" },
+			{
+				text: "[ INFO ] Upgrading Obsidian (Obsidian.Obsidian)...",
+				type: "info",
+			},
+			{ text: "[ OK ] Obsidian.Obsidian successfully upgraded.", type: "ok" },
+			{ text: "", type: "plain" },
+			{
+				text: "[ OK ] All selected packages upgraded successfully.",
+				type: "ok",
+			},
 		],
 	},
 ];
@@ -106,12 +161,14 @@ const commands = [
             <p><span class="text-[var(--color-muted)]">~</span> <span class="text-[var(--color-accent)]">{cmd}</span></p>
             {output.map(line => (
               <p class:list={[
-                'pl-2',
-                line.ok   && 'text-green-600',
-                line.muted && 'text-[var(--color-muted)]',
-                line.plain && 'text-[var(--color-secondary)]',
+                'pl-2 whitespace-pre',
+                line.type === 'info' && 'text-cyan-400',
+                line.type === 'ok' && 'text-green-400',
+                line.type === 'warn' && 'text-yellow-400',
+                line.type === 'muted' && 'text-[var(--color-muted)]',
+                line.type === 'plain' && 'text-[var(--color-secondary)]',
               ]}>
-                {line.text}
+                {line.text === "" ? " " : line.text}
               </p>
             ))}
           </div>
