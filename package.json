@@ -14,7 +14,7 @@
 		"dev": "vitest"
 	},
 	"dependencies": {
-		"@inquirer/prompts": "^5.0.0",
+		"@inquirer/checkbox": "^5.1.5",
 		"commander": "^12.1.0",
 		"picocolors": "^1.0.1"
 	},
