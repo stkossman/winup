@@ -1,0 +1,50 @@
+---
+import "@fontsource/arimo/400-italic.css";
+import "@fontsource/arimo/400.css";
+import "@fontsource/arimo/700.css";
+import "@fontsource/geist-mono/400.css";
+import "@fontsource/geist-mono/600.css";
+import "@fontsource/ultra/400.css";
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Winup - Minimal winget upgrade manager",
+	description = "A fast, interactive, and safe wrapper around winget. Hides unknown versions, interactive checkbox prompt, ships as a standalone .exe.",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/img/og-image.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/img/og-image.png" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

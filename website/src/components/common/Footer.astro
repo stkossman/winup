@@ -1,0 +1,59 @@
+---
+import { Github, Package, ExternalLink } from 'lucide-astro';
+
+const links = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/stkossman/winup',
+    icon: Github,
+  },
+  {
+    label: 'npm',
+    href: 'https://www.npmjs.com/package/winup-cli',
+    icon: Package,
+  },
+  {
+    label: 'Releases',
+    href: 'https://github.com/stkossman/winup/releases',
+    icon: ExternalLink,
+  },
+];
+---
+
+<footer class="border-t border-[var(--color-border)]">
+  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+
+    <div class="flex flex-col gap-1.5">
+      <span class="font-mono font-bold text-[var(--color-accent)] text-sm tracking-tight">
+        winup
+      </span>
+      <p class="font-mono text-xs text-[var(--color-muted)]">
+        Made by{' '}
+        <a
+          href="https://github.com/stkossman"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[var(--color-secondary)] hover:text-[var(--color-accent)] transition-colors"
+        >
+          Kossman
+        </a>
+      </p>
+      <p class="font-mono text-xs text-[var(--color-muted)]">MIT License</p>
+    </div>
+
+    <nav class="flex items-center gap-5">
+      {links.map(({ label, href, icon: Icon }) => (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-mono text-xs text-[var(--color-muted)] hover:text-[var(--color-accent)] flex items-center gap-1.5 transition-colors"
+        >
+          <Icon size={13} />
+          {label}
+        </a>
+      ))}
+    </nav>
+
+  </div>
+</footer>

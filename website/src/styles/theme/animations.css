@@ -1,0 +1,36 @@
+:root {
+	--duration-fast: 150ms;
+	--duration-base: 250ms;
+	--duration-slow: 400ms;
+	--ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+	--ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(16px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
+
+.animate-fade-in-up {
+	animation: fadeInUp var(--duration-slow) var(--ease-out) both;
+}
+
+.animate-blink {
+	animation: blink 1.1s step-end infinite;
+}
