@@ -1,0 +1,26 @@
+{
+	"name": "winup",
+	"version": "1.0.0",
+	"description": "Minimalistic winget upgrade manager",
+	"main": "dist/cli/index.js",
+	"type": "module",
+	"bin": {
+		"winup": "./bin/cli.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"start": "node ./bin/cli.js",
+		"test": "vitest run",
+		"dev": "vitest"
+	},
+	"dependencies": {
+		"@inquirer/prompts": "^5.0.0",
+		"commander": "^12.1.0",
+		"picocolors": "^1.0.1"
+	},
+	"devDependencies": {
+		"@types/node": "^20.0.0",
+		"typescript": "^5.4.0",
+		"vitest": "^1.6.0"
+	}
+}
