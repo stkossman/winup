@@ -1,4 +1,6 @@
 import { Command } from 'commander'
+import { checkAction } from './commands/check.js'
+import { listAction } from './commands/list.js'
 
 const program = new Command()
 
@@ -9,9 +11,18 @@ program
 
 program
 	.command('check')
-	.description('Check for available updates')
-	.action(() => {
-		console.log('[ INFO ] Checking for updates...')
-	})
+	.description(
+		'Quickly check for available updates without printing the full list',
+	)
+	.action(checkAction)
 
-program.parse()
+program
+	.command('list')
+	.description('Display a table of available updates')
+	.option(
+		'--include-unknown',
+		'Include packages with unknown versions in the list',
+	)
+	.action(listAction)
+
+program.parse(process.argv)
