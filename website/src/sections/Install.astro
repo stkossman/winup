@@ -1,0 +1,95 @@
+---
+import { Download, Package } from "lucide-astro";
+---
+
+<section id="install" class="max-w-6xl mx-auto px-6 py-20 border-b border-[var(--color-border)]">
+
+  <p class="font-mono text-xs text-[var(--color-muted)] tracking-[var(--tracking-widest)] uppercase mb-4">
+    Installation
+  </p>
+  <h2 class="text-4xl lg:text-5xl text-[var(--color-primary)] mb-14 max-w-xl">
+    Two ways to get started.
+  </h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-[var(--color-border)]">
+
+    <div class="bg-[var(--color-base)] p-8 flex flex-col gap-6">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs bg-[var(--color-accent)] text-[var(--color-accent-text)] px-2 py-0.5 rounded font-bold">A</span>
+        <h3 class="text-2xl text-[var(--color-primary)]">Standalone .exe</h3>
+      </div>
+
+      <p class="text-sm text-[var(--color-secondary)] leading-[var(--leading-relaxed)]">
+        No runtime required. Download <code>winup.exe</code>, place it in any folder
+        on your <code>PATH</code>, and run it from any terminal.
+      </p>
+
+      <ol class="flex flex-col gap-3">
+        {[
+          'Go to the Releases page on GitHub',
+          'Download winup.exe',
+          'Place it in a folder that is on your PATH',
+          'Run winup from any terminal',
+        ].map((step, i) => (
+          <li class="flex items-start gap-3 text-sm text-[var(--color-secondary)]">
+            <span class="font-mono text-xs text-[var(--color-accent)] bg-[var(--color-surface)] border border-[var(--color-border)] w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5">
+              {i + 1}
+            </span>
+            {step}
+          </li>
+        ))}
+      </ol>
+
+      <a
+        href="https://github.com/stkossman/winup/releases"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-sm inline-flex items-center gap-2 bg-[var(--color-accent)] text-[var(--color-accent-text)] font-bold px-5 py-2.5 rounded-lg hover:bg-[var(--color-accent-hover)] transition-colors w-fit mt-auto"
+      >
+        <Download size={16} />
+        Download winup.exe
+      </a>
+    </div>
+
+    <div class="bg-[var(--color-base)] p-8 flex flex-col gap-6">
+      <div class="flex items-center gap-3">
+        <span class="font-mono text-xs bg-[var(--color-surface)] text-[var(--color-secondary)] border border-[var(--color-border)] px-2 py-0.5 rounded font-bold">B</span>
+        <h3 class="text-2xl text-[var(--color-primary)]">NPM / Bun</h3>
+      </div>
+
+      <p class="text-sm text-[var(--color-secondary)] leading-[var(--leading-relaxed)]">
+        For developers who already have Node.js or Bun installed.
+        The package is published on <code>npm</code> as <code>winup-cli</code>.
+      </p>
+
+      <div class="flex flex-col gap-3">
+        {[
+          { label: 'npm', cmd: 'npm install -g winup-cli' },
+          { label: 'bun', cmd: 'bun add -g winup-cli' },
+        ].map(({ label, cmd }) => (
+          <div class="font-mono text-sm bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg overflow-hidden">
+            <div class="flex items-center gap-2 px-4 py-2 border-b border-[var(--color-border)] bg-[var(--color-surface-2)]">
+              <Package size={12} class="text-[var(--color-muted)]" />
+              <span class="text-[var(--color-muted)] text-xs">{label}</span>
+            </div>
+            <p class="px-4 py-3 text-[var(--color-accent)]">
+              <span class="text-[var(--color-muted)]">$</span> {cmd}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <a
+        href="https://www.npmjs.com/package/winup-cli"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-mono text-sm inline-flex items-center gap-2 border border-[var(--color-border)] text-[var(--color-primary)] px-5 py-2.5 rounded-lg hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all w-fit mt-auto"
+      >
+        <Package size={16} />
+        View on npm
+      </a>
+    </div>
+
+  </div>
+
+</section>
