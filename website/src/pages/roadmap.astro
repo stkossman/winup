@@ -2,7 +2,9 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
-import { Clock, CircleDashed } from 'lucide-astro';
+import { Clock, CircleDashed, ExternalLink, Github } from 'lucide-astro';
+
+const issuesUrl = "https://github.com/stkossman/winup/issues";
 
 const inProgress = [
   {
@@ -15,6 +17,10 @@ const planned = [
   {
     title: "Package Pinning (Ignore List)",
     description: "Add commands to pin specific packages, hiding them from all future check and upgrade prompts to protect stable local environments.",
+  },
+  {
+    title: "New version notification",
+    description: "Notify users when new version of winup is available.",
   },
   {
     title: "Environment Backup & Restore",
@@ -38,6 +44,16 @@ const planned = [
         <p class="text-lg text-[var(--color-secondary)] max-w-xl">
           Keep up with what's being built next. A surgical approach to Windows package management.
         </p>
+        <a
+          href={issuesUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-8 font-mono text-xs inline-flex items-center gap-2 border border-[var(--color-border)] text-[var(--color-primary)] px-3 py-2 rounded hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all"
+        >
+          <Github size={14} />
+          View live GitHub issues
+          <ExternalLink size={12} />
+        </a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8">
@@ -61,6 +77,15 @@ const planned = [
                 <p class="text-sm text-[var(--color-secondary)] leading-[var(--leading-relaxed)]">
                   {item.description}
                 </p>
+                <a
+                  href={issuesUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-4 font-mono text-xs inline-flex items-center gap-1.5 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  Track in GitHub Issues
+                  <ExternalLink size={12} />
+                </a>
               </div>
             ))}
           </div>
@@ -85,6 +110,15 @@ const planned = [
                 <p class="text-sm text-[var(--color-secondary)] leading-[var(--leading-relaxed)]">
                   {item.description}
                 </p>
+                <a
+                  href={issuesUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-4 font-mono text-xs inline-flex items-center gap-1.5 text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors"
+                >
+                  Track in GitHub Issues
+                  <ExternalLink size={12} />
+                </a>
               </div>
             ))}
           </div>
